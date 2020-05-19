@@ -1,0 +1,116 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label fixed>E-mail : </ion-label>
+    <ion-input required type="text" [(ngModel)]="user.Email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Password : </ion-label>
+    <ion-input required type="password" [(ngModel)]="user.Password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Age : </ion-label>
+    <ion-input required type="number" [(ngModel)]="user.Age"></ion-input>
+  </ion-item>
+
+  <br />
+  <br />
+
+  <ion-grid>
+
+    <!-- Location -->
+
+    <ion-row>
+      <h2>Location :</h2>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-6>
+        <button ion-button block outline icon-left (click)="getLocation()">
+          <ion-icon name="locate"></ion-icon>
+          Get My Location
+        </button>
+      </ion-col>
+
+      <ion-col col-6>
+        <button ion-button block outline icon-left (click)="setLocationOnMap()">
+          <ion-icon name="map"></ion-icon>
+          Use Map
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+
+        <agm-map *ngIf="locationSet" [latitude]="baseLocation.Latitude" [longitude]="baseLocation.Longitude" [zoom]="15">
+
+          <agm-marker [latitude]="baseLocation.Latitude" [longitude]="baseLocation.Longitude"></agm-marker>
+
+        </agm-map>
+
+      </ion-col>
+    </ion-row>
+
+    <br />
+    <br />
+
+
+    <!-- Photo -->
+
+    <ion-row>
+      <h2>Photo :</h2>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col col-6>
+        <button ion-button block outline icon-left (click)="takePhoto()">
+          <ion-icon name="camera"></ion-icon>
+          Camera
+        </button>
+      </ion-col>
+
+      <ion-col col-6>
+        <button ion-button block outline icon-left (click)="openGallery()">
+          <ion-icon name="image"></ion-icon>
+          Gallery
+        </button>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <img *ngIf="imagePath != ''" height="200px" width="200px" src=" {{imagePath}} " />
+      </ion-col>
+    </ion-row>
+
+    <br />
+    <br />
+
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button color="primary" block (click)="register()">Save</button>
+      </ion-col>
+
+      <ion-col col-6>
+        <button ion-button color="danger" block (click)="cancel()">Cancel</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

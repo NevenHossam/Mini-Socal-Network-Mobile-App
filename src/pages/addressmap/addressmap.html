@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Set Address Using Map</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <agm-map [latitude]="baseLocation.Latitude" [longitude]="baseLocation.Longitude" [zoom]="15" (mapClick)="onMapClicked($event)">
+
+    <agm-marker *ngIf="locationSet" [latitude]="baseLocation.Latitude" [longitude]="baseLocation.Longitude"></agm-marker>
+
+  </agm-map>
+
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button color="primary" [disabled]="!locationSet" block (click)="setLocation()">
+        Set Location
+      </button>
+    </ion-col>
+
+    <ion-col col-6>
+      <button ion-button color="danger" block (click)="cancel()">
+        Cancel
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>

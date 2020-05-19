@@ -1,0 +1,84 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Timeline</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToAddPostPage()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card padding>
+    <ion-item (click)="addPost()">
+      <ion-note>Press To Add Post</ion-note>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-card *ngFor=" let post of postsList">
+
+      <!-- post owner info -->
+      <ion-item>
+
+        <ion-avatar item-start>
+          <img src="{{imagePath}}">
+        </ion-avatar>
+
+        <h2> {{post.PostOwner}} </h2>
+
+        <p>{{post.PostDate | date: "dd/MM/yyyy hh:mm"}}</p>
+
+      </ion-item>
+
+      <!-- post content -->
+      <ion-card-content (click)="OnPostClicked(post)">
+        <ion-row>
+          <ion-col text-center>
+            <img *ngIf="postImagePath" height="200px" width="200px" src=" {{postImagePath}} " />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <p block> {{post.PostContent}} </p>
+        </ion-row>
+
+      </ion-card-content>
+
+
+      <!-- interactions -->
+      <ion-row>
+        <ion-col>
+          <button ion-button color="primary" clear small icon-start (click)="LikeClicked(post)">
+            <ion-icon name='thumbs-up'></ion-icon>
+            like
+          </button>
+        </ion-col>
+
+        <ion-col>
+          <button ion-button color="primary" clear small icon-start (click)="DislikeClicked(post)">
+            <ion-icon name='thumbs-down'></ion-icon>
+            dislike
+          </button>
+        </ion-col>
+
+        <ion-col>
+          <button ion-button color="primary" clear small icon-start>
+            <ion-icon name='share'></ion-icon>
+            share
+          </button>
+        </ion-col>
+
+      </ion-row>
+
+    </ion-card>
+  </ion-list>
+
+</ion-content>
